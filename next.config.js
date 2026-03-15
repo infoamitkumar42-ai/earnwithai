@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [],
+    // Images are served from /public/images/
+    // Set unoptimized: true to bypass optimization for placeholder images
+    unoptimized: true,
   },
 };
 

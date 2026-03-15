@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -19,10 +17,10 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     images: [
       {
-        url: "/og-image.png", // REPLACE: Add your OG image
+        url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "earningwithai.in — AI Income Coach",
+        alt: "earningwithai.in — AI Income Coach Amit Kumar",
       },
     ],
   },
@@ -33,18 +31,16 @@ export const metadata: Metadata = {
   },
   keywords: [
     "earn with AI",
-    "AI income",
-    "make money with AI",
-    "AI se paise kaise kamayein",
+    "AI se paisa kamao",
+    "AI income India",
+    "earn money with AI",
     "Amit Kumar AI coach",
-    "LeadFlow CRM",
     "AI freelancing India",
+    "build SaaS without coding",
     "earningwithai",
+    "LeadFlow CRM",
   ],
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -53,11 +49,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-[#0A0A0A] text-white min-h-screen">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+    <html lang="en">
+      <head>
+        {/* Google Fonts — loaded at runtime, not build time */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Instrument+Serif:ital@0;1&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased">
+        {children}
       </body>
     </html>
   );

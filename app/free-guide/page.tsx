@@ -1,207 +1,201 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Navbar from "@/components/layout/Navbar";
 import { FREE_GUIDE, SITE } from "@/lib/constants";
+import { staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
+
+const CHECK_ICON = (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0 mt-0.5">
+    <circle cx="9" cy="9" r="9" fill="rgba(216,90,48,0.15)" />
+    <path d="M5 9l3 3 5-5" stroke="#D85A30" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 export default function FreeGuidePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [done, setDone] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("email_address", email);
-      formData.append("fields[first_name]", name);
-
-      await fetch(SITE.convertkitFormUrl, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
-      });
-
-      setSubmitted(true);
-      setTimeout(() => {
-        window.location.href = "/thank-you";
-      }, 800);
+      const fd = new FormData();
+      fd.append("email_address", email);
+      fd.append("fields[first_name]", name);
+      await fetch(SITE.convertkitFormUrl, { method: "POST", body: fd, mode: "no-cors" });
+      setDone(true);
+      setTimeout(() => (window.location.href = "/thank-you"), 1000);
     } catch {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] pt-20">
-      {/* Hero */}
-      <section className="py-16 px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#D85A30]/8 rounded-full blur-3xl pointer-events-none" />
+    <>
+      {/* Minimal navbar — logo only */}
+      <Navbar minimal />
 
-        <div className="max-w-6xl mx-auto relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left: Form */}
+      <main
+        className="min-h-screen pt-24 pb-16"
+        style={{
+          background: "#0C0A09",
+          backgroundImage: "radial-gradient(ellipse at 50% 0%, rgba(216,90,48,0.05) 0%, transparent 60%)",
+        }}
+      >
+        <div className="container-warm">
+          <div className="max-w-[600px] mx-auto">
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-7"
             >
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#D85A30]/10 border border-[#D85A30]/20 rounded-full text-[#D85A30] text-xs font-semibold mb-5">
-                100% Free Download
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full text-[12px] font-bold uppercase tracking-[0.1em] bg-[rgba(216,90,48,0.12)] text-[#D85A30] border border-[rgba(216,90,48,0.2)]">
+                {FREE_GUIDE.badge}
               </span>
+            </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-                {FREE_GUIDE.headline}
-              </h1>
-              <p className="text-gray-400 text-base md:text-lg mb-6 leading-relaxed">
-                {FREE_GUIDE.subheadline}
-              </p>
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-center mb-4"
+              style={{
+                fontSize: "clamp(32px, 6vw, 52px)",
+                fontWeight: 600,
+                letterSpacing: "-0.025em",
+                lineHeight: 1.08,
+                color: "#FAF5F0",
+              }}
+            >
+              {FREE_GUIDE.headline}
+            </motion.h1>
 
-              {/* Social Proof */}
-              <div className="flex items-center gap-3 mb-8">
-                <div className="flex -space-x-2">
-                  {["PS", "RV", "SP", "AK"].map((init) => (
-                    <div
-                      key={init}
-                      className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D85A30] to-[#B84820] border-2 border-[#0A0A0A] flex items-center justify-center text-white text-[10px] font-bold"
-                    >
-                      {init}
-                    </div>
-                  ))}
-                </div>
-                <p className="text-gray-400 text-sm">
-                  <span className="text-white font-bold">13,500+</span> people already joined
-                </p>
+            {/* Sub */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18 }}
+              className="text-center text-[17px] text-[#A8A29E] leading-[1.7] mb-10"
+            >
+              {FREE_GUIDE.subheadline}
+            </motion.p>
+
+            {/* Guide image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.25 }}
+              className="relative mx-auto mb-12"
+              style={{ maxWidth: "380px" }}
+            >
+              {/* REPLACE: guide-mockup.png — book mockup image */}
+              <div
+                className="relative w-full rounded-[20px] overflow-hidden"
+                style={{
+                  aspectRatio: "4/3",
+                  background: "#1C1917",
+                  border: "1px solid rgba(168,162,158,0.1)",
+                  boxShadow: "0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(216,90,48,0.08)",
+                }}
+              >
+                <Image
+                  src="/images/guide-mockup.png"
+                  alt="AI Income Blueprint 2026 — Free Guide Mockup"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="380px"
+                />
               </div>
+            </motion.div>
 
-              {/* Form */}
-              {submitted ? (
-                <div className="bg-[#111111] border border-[#D85A30]/30 rounded-2xl p-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-[#D85A30]/10 flex items-center justify-center mx-auto mb-4">
+            {/* What's inside */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+              className="mb-10"
+            >
+              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#78716C] mb-5">
+                What&apos;s inside:
+              </p>
+              <div className="space-y-4">
+                {FREE_GUIDE.bullets.map((bullet, i) => (
+                  <motion.div
+                    key={i}
+                    variants={staggerItem}
+                    className="flex items-start gap-3"
+                  >
+                    {CHECK_ICON}
+                    <span className="text-[16px] text-[#FAF5F0] leading-[1.6]">{bullet}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              {done ? (
+                <div className="text-center py-10">
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                    style={{ background: "rgba(216,90,48,0.1)", border: "1px solid rgba(216,90,48,0.2)" }}
+                  >
                     <svg className="w-7 h-7 text-[#D85A30]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-white font-semibold text-lg">You&apos;re in!</p>
-                  <p className="text-gray-500 text-sm mt-2">Redirecting you...</p>
+                  <p className="text-[#FAF5F0] font-semibold text-lg">You&apos;re in!</p>
+                  <p className="text-[#78716C] text-sm mt-1">Redirecting you...</p>
                 </div>
               ) : (
-                <div className="bg-[#111111] border border-[#1E1E1E] rounded-2xl p-6">
-                  <h3 className="text-white font-bold text-lg mb-5">{FREE_GUIDE.formHeading}</h3>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={FREE_GUIDE.namePlaceholder}
-                      required
-                      className="w-full px-4 py-3.5 bg-[#0F0F0F] border border-[#2A2A2A] focus:border-[#D85A30] rounded-xl text-white placeholder-gray-600 outline-none transition-colors text-sm"
-                    />
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder={FREE_GUIDE.emailPlaceholder}
-                      required
-                      className="w-full px-4 py-3.5 bg-[#0F0F0F] border border-[#2A2A2A] focus:border-[#D85A30] rounded-xl text-white placeholder-gray-600 outline-none transition-colors text-sm"
-                    />
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full py-4 bg-[#D85A30] hover:bg-[#E87A55] text-white font-bold rounded-xl transition-all hover:shadow-xl hover:shadow-[#D85A30]/25 text-sm disabled:opacity-60"
-                    >
-                      {loading ? "Please wait..." : FREE_GUIDE.ctaButton}
-                    </button>
-                  </form>
-                  <p className="text-gray-700 text-xs text-center mt-3">
-                    No spam. Unsubscribe anytime.
-                  </p>
-                </div>
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={FREE_GUIDE.namePlaceholder}
+                    required
+                    className="input-warm !h-[52px] !rounded-[14px]"
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={FREE_GUIDE.emailPlaceholder}
+                    required
+                    className="input-warm !h-[52px] !rounded-[14px]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full btn-primary !h-[56px] !rounded-[14px] !text-[16px] !font-semibold disabled:opacity-60"
+                  >
+                    {loading ? "Please wait..." : FREE_GUIDE.ctaButton}
+                  </button>
+                </form>
               )}
-            </motion.div>
 
-            {/* Right: Guide Mockup */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden md:block"
-            >
-              {/* REPLACE: Add your guide mockup/book cover image here */}
-              <div className="relative mx-auto max-w-xs">
-                <div className="absolute inset-0 bg-[#D85A30]/20 blur-3xl rounded-3xl" />
-                <div className="relative bg-gradient-to-br from-[#D85A30] to-[#B84820] rounded-2xl p-8 text-white shadow-2xl">
-                  <div className="absolute inset-0 rounded-2xl bg-black/20" />
-                  <div className="relative">
-                    <p className="text-orange-200 text-xs font-semibold uppercase tracking-widest mb-3">Free Blueprint</p>
-                    <h3 className="text-2xl font-black leading-tight mb-6">
-                      AI Income Blueprint<br />2026
-                    </h3>
-                    <div className="space-y-2.5 mb-8">
-                      {FREE_GUIDE.bullets.slice(0, 3).map((b, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <span className="text-orange-200 mt-0.5">✓</span>
-                          <span className="text-orange-100 text-xs leading-relaxed">{b}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="text-white/60 text-xs">By Amit Kumar — @amitxai</div>
-                  </div>
-                </div>
-
-                {/* Shadow/depth effect */}
-                <div className="absolute -bottom-2 left-4 right-4 h-4 bg-[#D85A30]/20 rounded-b-xl blur-sm" />
-              </div>
+              {/* Social proof */}
+              <p className="text-center text-[13px] text-[#78716C] mt-4">
+                {FREE_GUIDE.socialProof}
+              </p>
             </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* What's Inside */}
-      <section className="py-14 px-4 sm:px-6 bg-[#080808]">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
-              What&apos;s Inside the Free Guide
-            </h2>
-            <p className="text-gray-500 text-sm">Everything you need to start earning with AI</p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {FREE_GUIDE.bullets.map((bullet, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-4 bg-[#111111] border border-[#1E1E1E] rounded-xl p-5"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#D85A30]/10 border border-[#D85A30]/20 flex items-center justify-center flex-shrink-0 text-[#D85A30] font-bold text-sm">
-                  {i + 1}
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed pt-1">{bullet}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="px-8 py-4 bg-[#D85A30] hover:bg-[#E87A55] text-white font-bold rounded-xl transition-all hover:shadow-xl hover:shadow-[#D85A30]/25 text-sm"
-            >
-              Download Free Guide →
-            </button>
-            <p className="text-gray-600 text-xs mt-3">Free forever. No credit card needed.</p>
-          </div>
-        </div>
-      </section>
-    </div>
+      </main>
+    </>
   );
 }

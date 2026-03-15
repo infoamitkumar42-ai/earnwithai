@@ -1,131 +1,155 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ABOUT_PAGE, SITE } from "@/lib/constants";
-import type { Metadata } from "next";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { MY_STORY, PROOF, SITE } from "@/lib/constants";
+import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
+
+const TIMELINE = [
+  { year: "2019", event: "Started learning digital marketing from scratch" },
+  { year: "2021", event: "Founded digital marketing agency" },
+  { year: "2023", event: "Discovered AI tools — everything changed" },
+  { year: "2024", event: "Built LeadFlow CRM with ZERO coding, earned ₹4.6L in 90 days" },
+  { year: "2025–26", event: "Teaching 13,500+ people how to earn with AI" },
+];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] pt-20">
-      {/* Hero */}
-      <section className="py-14 px-4 sm:px-6 relative">
-        <div className="absolute top-0 right-0 w-[400px] h-[300px] bg-[#D85A30]/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto relative">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Photo */}
+    <>
+      <Navbar />
+      <main className="min-h-screen pt-24" style={{ background: "#0C0A09" }}>
+        {/* Hero */}
+        <section
+          className="py-16 md:py-24 relative overflow-hidden"
+          style={{
+            background: "radial-gradient(ellipse at 50% 0%, rgba(216,90,48,0.05) 0%, transparent 60%)",
+          }}
+        >
+          <div className="container-warm text-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="md:sticky md:top-24"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
-              {/* REPLACE: Add your photo here */}
-              <div className="relative max-w-sm mx-auto md:mx-0">
-                <div className="absolute inset-0 bg-[#D85A30]/15 rounded-2xl blur-2xl" />
-                <div className="relative aspect-[3/4] bg-gradient-to-b from-[#161616] to-[#111111] border border-[#2A2A2A] rounded-2xl flex flex-col items-center justify-center overflow-hidden">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#D85A30] to-[#B84820] flex items-center justify-center mb-4">
-                    <span className="text-4xl font-black text-white">A</span>
-                  </div>
-                  <p className="text-white font-bold text-lg">Amit Kumar</p>
-                  <p className="text-[#D85A30] text-sm">@amitxai</p>
-                  <p className="text-gray-600 text-xs mt-6 text-center px-8">
-                    {/* REPLACE: Add your photo here */}
-                    [Your photo here]
-                  </p>
-                </div>
+              <span className="text-[13px] text-[#D85A30] font-medium uppercase tracking-[0.1em] mb-4 block">
+                The Story
+              </span>
+              <h1
+                className="mb-4"
+                style={{
+                  fontSize: "clamp(32px, 5.5vw, 56px)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.025em",
+                  color: "#FAF5F0",
+                }}
+              >
+                {MY_STORY.heading}
+              </h1>
+              <p className="text-[17px] text-[#A8A29E] max-w-[480px] mx-auto leading-[1.7]">
+                AI Income Coach · Digital Marketing Agency Owner · @amitxai
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-3 mt-4">
-                  {[
-                    { value: "Rs.4.6L+", label: "Earned in 90d" },
-                    { value: "13.5K+", label: "Followers" },
-                    { value: "256+", label: "Customers" },
-                    { value: "5+ Yrs", label: "Experience" },
-                  ].map((stat, i) => (
-                    <div key={i} className="bg-[#111111] border border-[#1E1E1E] rounded-xl p-3 text-center">
-                      <div className="text-[#D85A30] font-black text-sm">{stat.value}</div>
-                      <div className="text-gray-600 text-xs mt-0.5">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
+        {/* Photo */}
+        <section className="pb-16">
+          <div className="container-warm">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              variants={fadeUp}
+              className="relative w-full max-h-[500px] overflow-hidden rounded-[20px] mb-16"
+            >
+              {/* REPLACE: about-amit.png */}
+              <div className="relative w-full" style={{ aspectRatio: "16/7" }}>
+                <Image
+                  src="/images/about-amit.png"
+                  alt="Amit Kumar — AI Income Coach"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1100px) 100vw, 1100px"
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-40"
+                  style={{ background: "linear-gradient(to bottom, transparent, #0C0A09)" }}
+                />
               </div>
             </motion.div>
 
-            {/* Content */}
+            {/* Story paragraphs */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              variants={staggerContainer}
+              className="max-w-[680px] mx-auto"
             >
-              <span className="text-[#D85A30] text-sm font-semibold uppercase tracking-widest mb-3 block">
-                The Story
-              </span>
-              <h1 className="text-3xl md:text-4xl font-black text-white mb-2">
-                {ABOUT_PAGE.headline}
-              </h1>
-              <p className="text-[#D85A30] text-base font-medium mb-8">
-                {ABOUT_PAGE.subheadline}
-              </p>
-
-              <div className="space-y-4 mb-12">
-                {ABOUT_PAGE.bio.map((para, i) => (
-                  <p key={i} className="text-gray-400 text-sm md:text-base leading-relaxed">
+              <div className="space-y-5 mb-12">
+                {MY_STORY.paragraphs.map((para, i) => (
+                  <motion.p key={i} variants={staggerItem} className="text-[17px] text-[#A8A29E] leading-[1.85]">
                     {para}
-                  </p>
+                  </motion.p>
                 ))}
               </div>
 
+              {/* Stats */}
+              <motion.div variants={staggerItem} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                {PROOF.stats.map((stat, i) => (
+                  <div
+                    key={i}
+                    className="text-center p-4 rounded-[16px]"
+                    style={{ background: "rgba(28,25,23,0.6)", border: "1px solid rgba(168,162,158,0.08)" }}
+                  >
+                    <div className="text-[24px] font-bold text-[#D85A30] mb-1" style={{ letterSpacing: "-0.02em" }}>
+                      {stat.display}
+                    </div>
+                    <p className="text-[12px] text-[#78716C]">{stat.label}</p>
+                  </div>
+                ))}
+              </motion.div>
+
               {/* Timeline */}
-              <div>
-                <h3 className="text-white font-bold text-lg mb-5">My Journey</h3>
+              <motion.div variants={staggerItem} className="mb-12">
+                <h3 className="text-[20px] font-semibold text-[#FAF5F0] mb-6" style={{ letterSpacing: "-0.01em" }}>
+                  My journey
+                </h3>
                 <div className="relative">
-                  <div className="absolute left-4 top-0 bottom-0 w-px bg-[#1E1E1E]" />
+                  <div className="absolute left-4 top-0 bottom-0 w-px bg-[rgba(168,162,158,0.1)]" />
                   <div className="space-y-6">
-                    {ABOUT_PAGE.timeline.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="flex gap-5 pl-12 relative"
-                      >
-                        <div className="absolute left-0 top-0.5 w-8 h-8 rounded-full bg-[#111111] border-2 border-[#D85A30]/40 flex items-center justify-center">
+                    {TIMELINE.map((item, i) => (
+                      <div key={i} className="flex gap-6 pl-12 relative">
+                        <div className="absolute left-0 top-0.5 w-8 h-8 rounded-full bg-[#1C1917] border border-[rgba(216,90,48,0.3)] flex items-center justify-center">
                           <div className="w-2 h-2 rounded-full bg-[#D85A30]" />
                         </div>
                         <div>
-                          <span className="text-[#D85A30] font-bold text-sm">{item.year}</span>
-                          <p className="text-gray-400 text-sm mt-1">{item.event}</p>
+                          <span className="text-[#D85A30] font-bold text-[14px]">{item.year}</span>
+                          <p className="text-[#A8A29E] text-[15px] mt-0.5 leading-relaxed">{item.event}</p>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* CTA */}
-              <div className="mt-12 flex flex-wrap gap-4">
-                <a
-                  href={SITE.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 bg-[#D85A30] hover:bg-[#E87A55] text-white font-bold rounded-xl text-sm transition-all"
-                >
+              {/* CTAs */}
+              <motion.div variants={staggerItem} className="flex flex-wrap gap-4">
+                <a href={SITE.instagram} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Follow on Instagram →
                 </a>
-                <Link
-                  href="/free-guide"
-                  className="px-6 py-3 bg-[#111111] border border-[#2A2A2A] hover:border-[#D85A30]/40 text-white font-semibold rounded-xl text-sm transition-all"
-                >
-                  Get Free Guide
+                <Link href="/free-guide" className="btn-secondary">
+                  Get Free Blueprint
                 </Link>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
