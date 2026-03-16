@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -106,13 +106,10 @@ export default function FreeGuidePage() {
                   boxShadow: "0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(216,90,48,0.08)",
                 }}
               >
-                <Image
+                <img
                   src="/images/guide-mockup.png"
                   alt="AI Income Blueprint 2026 — Free Guide Mockup"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="380px"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
             </motion.div>

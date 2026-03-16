@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { PROOF } from "@/lib/constants";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
@@ -64,12 +64,10 @@ export default function Proof() {
             {/* Screenshot */}
             {/* REPLACE: razorpay-proof.png — the Razorpay dashboard screenshot image */}
             <div className="relative aspect-[16/9] w-full bg-[#0F0E0D]">
-              <Image
+              <img
                 src="/images/razorpay-proof.jpeg"
                 alt="Razorpay Dashboard — ₹4,63,949 collected from 256 payments"
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 860px) 100vw, 860px"
+                className="absolute inset-0 w-full h-full object-cover object-top"
               />
             </div>
           </div>

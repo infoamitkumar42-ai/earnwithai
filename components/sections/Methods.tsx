@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { METHODS } from "@/lib/constants";
 import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
@@ -106,12 +106,10 @@ export default function Methods() {
                   }}
                 >
                   {/* REPLACE: method images */}
-                  <Image
+                  <img
                     src={`/images/${method.image}`}
                     alt={method.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="160px"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>

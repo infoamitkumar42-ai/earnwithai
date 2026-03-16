@@ -1,9 +1,8 @@
 "use client";
 
-import Image, { ImageProps } from "next/image";
-import { useState } from "react";
+import { useState, ImgHTMLAttributes } from "react";
 
-interface SafeImageProps extends Omit<ImageProps, "src"> {
+interface SafeImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   fallbackText?: string;
 }
@@ -39,7 +38,7 @@ export default function SafeImage({
   }
 
   return (
-    <Image
+    <img
       src={src}
       alt={alt}
       className={className}

@@ -94,7 +94,7 @@ export const METHODS = [
     title: "Coaching & Courses",
     description: "Package your knowledge into high-ticket offers",
     earning: "₹1L–10L/month",
-    image: "method-coaching.png",
+    image: "method-coaching.jpeg",
     highlight: false,
   },
 ];

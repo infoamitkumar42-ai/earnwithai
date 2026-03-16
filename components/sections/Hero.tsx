@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { HERO, SITE } from "@/lib/constants";
 import { staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
@@ -30,12 +30,10 @@ export default function Hero() {
             className="w-full h-full relative"
             style={{ opacity: 0.04 }}
           >
-            <Image
+            <img
               src="/images/hero-amit.png"
               alt=""
-              fill
-              className="object-cover object-center"
-              priority
+              className="absolute inset-0 w-full h-full object-cover object-center"
               aria-hidden="true"
             />
           </div>

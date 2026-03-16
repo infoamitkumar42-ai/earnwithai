@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -67,12 +67,10 @@ export default function AboutPage() {
             >
               {/* REPLACE: about-amit.png */}
               <div className="relative w-full" style={{ aspectRatio: "16/7" }}>
-                <Image
+                <img
                   src="/images/about-amit.png"
                   alt="Amit Kumar — AI Income Coach"
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
                 <div
                   className="absolute bottom-0 left-0 right-0 h-40"

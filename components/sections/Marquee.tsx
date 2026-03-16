@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { motion } from "framer-motion";
 import { MARQUEE_HASHTAGS } from "@/lib/constants";
 import { fadeUp, viewportConfig } from "@/lib/animations";
@@ -20,7 +20,7 @@ const MARQUEE_ITEMS: MarqueeItemType[] = [
   { type: "text", content: "your" },
   { type: "image", src: "/images/razorpay-proof.jpeg", alt: "Proof", rotate: 2 },
   { type: "text", content: "income" },
-  { type: "image", src: "/images/method-coaching.png", alt: "Coaching", rotate: -3 },
+  { type: "image", src: "/images/method-coaching.jpeg", alt: "Coaching", rotate: -3 },
   { type: "text", content: "from" },
   { type: "image", src: "/images/method-affiliate.jpeg", alt: "Affiliate", rotate: 1 },
   { type: "text", content: "anywhere" },
@@ -55,12 +55,10 @@ function MarqueeItem({ item }: { item: typeof MARQUEE_ITEMS[0] }) {
         background: "#1C1917",
       }}
     >
-      <Image
+      <img
         src={item.src}
         alt={item.alt || ""}
-        fill
-        className="object-cover"
-        sizes="200px"
+        className="absolute inset-0 w-full h-full object-cover"
       />
     </div>
   );

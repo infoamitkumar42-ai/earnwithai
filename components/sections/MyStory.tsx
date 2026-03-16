@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { MY_STORY } from "@/lib/constants";
@@ -34,12 +34,10 @@ export default function MyStory() {
         >
           {/* REPLACE: about-amit.png — arms crossed, dashboard behind */}
           <div className="relative w-full" style={{ aspectRatio: "16/7" }}>
-            <Image
+            <img
               src="/images/about-amit.png"
               alt="Amit Kumar — AI Income Coach"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 1100px) 100vw, 1100px"
+              className="absolute inset-0 w-full h-full object-cover object-top"
             />
             {/* Warm gradient overlay at bottom */}
             <div
