@@ -67,7 +67,7 @@ export const METHODS = [
     description: "Create apps without code — this is my exact method",
     earning: "₹50K–5L+/month",
     badge: "★ MY METHOD",
-    image: "method-saas.png",
+    image: "method-saas.jpeg",
     highlight: true,
   },
   {
@@ -76,7 +76,7 @@ export const METHODS = [
     title: "Digital Products",
     description: "eBooks, prompts, templates — create once, sell forever",
     earning: "₹10K–1L/month",
-    image: "method-products.png",
+    image: "method-products.jpeg",
     highlight: false,
   },
   {
@@ -85,7 +85,7 @@ export const METHODS = [
     title: "Affiliate Marketing",
     description: "Promote AI tools, earn recurring commissions",
     earning: "₹15K–2L/month",
-    image: "method-affiliate.png",
+    image: "method-affiliate.jpeg",
     highlight: false,
   },
   {

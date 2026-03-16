@@ -65,7 +65,7 @@ export default function Proof() {
             {/* REPLACE: razorpay-proof.png — the Razorpay dashboard screenshot image */}
             <div className="relative aspect-[16/9] w-full bg-[#0F0E0D]">
               <Image
-                src="/images/razorpay-proof.png"
+                src="/images/razorpay-proof.jpeg"
                 alt="Razorpay Dashboard — ₹4,63,949 collected from 256 payments"
                 fill
                 className="object-cover object-top"
