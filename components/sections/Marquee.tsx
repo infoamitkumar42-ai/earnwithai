@@ -66,7 +66,13 @@ export default function MarqueeSection() {
   const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
 
   return (
-    <section className="py-16 md:py-24 overflow-hidden">
+    <motion.section
+      className="py-16 md:py-24 overflow-hidden"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       {/* Scrolling row */}
       <div className="marquee-wrapper mb-12">
         <div
@@ -108,7 +114,7 @@ export default function MarqueeSection() {
           ))}
         </div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }
 

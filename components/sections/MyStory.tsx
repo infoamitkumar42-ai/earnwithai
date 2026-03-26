@@ -8,7 +8,13 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function MyStory() {
   return (
-    <section className="py-20 md:py-32">
+    <motion.section
+      className="py-20 md:py-32"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="max-w-4xl mx-auto px-5">
         {/* Heading */}
         <motion.div
@@ -34,7 +40,7 @@ export default function MyStory() {
           {/* REPLACE: about-amit.png — arms crossed, dashboard behind */}
           <div className="relative w-full" style={{ aspectRatio: "16/7" }}>
             <img
-              src="/images/about-amit.png"
+              src="/images/hero-amit.png"
               alt="Amit Kumar — AI Income Coach"
               className="absolute inset-0 w-full h-full object-cover object-top"
             />
@@ -73,6 +79,6 @@ export default function MyStory() {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

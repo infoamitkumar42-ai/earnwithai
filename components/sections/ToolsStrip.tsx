@@ -23,7 +23,13 @@ export default function ToolsStrip() {
   const doubled = [...TOOLS, ...TOOLS];
 
   return (
-    <section className="py-14 md:py-20 border-y border-[rgba(168,162,158,0.06)]">
+    <motion.section
+      className="py-14 md:py-20 border-y border-[rgba(168,162,158,0.06)]"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="container-warm mb-8">
         <motion.div
           initial="hidden"
@@ -58,6 +64,6 @@ export default function ToolsStrip() {
           See all 12 tools →
         </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }

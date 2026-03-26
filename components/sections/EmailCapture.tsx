@@ -29,8 +29,12 @@ export default function EmailCapture({ redirectTo = "/thank-you" }: EmailCapture
   };
 
   return (
-    <section
+    <motion.section
       className="py-32 relative overflow-hidden"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
       style={{
         background:
           "radial-gradient(ellipse at 50% 50%, rgba(216,90,48,0.05) 0%, transparent 70%)",
@@ -95,6 +99,6 @@ export default function EmailCapture({ redirectTo = "/thank-you" }: EmailCapture
           <p className="text-[13px] text-[#78716C]">{EMAIL_CAPTURE.socialProof}</p>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

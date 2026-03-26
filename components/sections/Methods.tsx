@@ -7,7 +7,13 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function Methods() {
   return (
-    <section className="py-20 md:py-32">
+    <motion.section
+      className="py-20 md:py-32"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="max-w-4xl mx-auto px-5">
         {/* Heading */}
         <motion.div
@@ -114,6 +120,6 @@ export default function Methods() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

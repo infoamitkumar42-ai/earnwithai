@@ -1,71 +1,65 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-interface AnimatedCounterProps {
+interface Props {
   target: number;
   prefix?: string;
   suffix?: string;
-  display?: string; // override with formatted string (e.g. "₹4,63,949")
-  duration?: number;
-  className?: string;
+  indianFormat?: boolean;
 }
 
 export default function AnimatedCounter({
   target,
   prefix = "",
   suffix = "",
-  display,
-  duration = 2000,
-  className,
-}: AnimatedCounterProps) {
-  const [value, setValue] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+  indianFormat = false,
+}: Props) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const startTime = performance.now();
-
-          const tick = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          if (target === 0) {
+            setCount(0);
+            return;
+          }
+          const duration = 2500;
+          const steps = 60;
+          let step = 0;
+          const timer = setInterval(() => {
+            step++;
+            const progress = step / steps;
             const eased = 1 - Math.pow(1 - progress, 3);
-            setValue(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(tick);
-            else setValue(target);
-          };
-
-          requestAnimationFrame(tick);
+            setCount(Math.floor(target * eased));
+            if (step >= steps) {
+              setCount(target);
+              clearInterval(timer);
+            }
+          }, duration / steps);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [target, duration]);
+  }, [target, hasAnimated]);
 
-  // Format large number with commas (Indian style)
-  const formatIndian = (n: number) => {
-    if (n === 0) return "0";
-    const str = n.toString();
-    if (str.length <= 3) return str;
-    const last3 = str.slice(-3);
-    const rest = str.slice(0, -3);
-    return rest.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + last3;
-  };
-
-  // If display override and animation completed, show display string
-  const showDisplay = display && value === target;
+  const formatted = indianFormat
+    ? count.toLocaleString("en-IN")
+    : count.toLocaleString();
 
   return (
-    <span ref={ref} className={className}>
-      {showDisplay ? display : `${prefix}${target > 999 ? formatIndian(value) : value}${suffix}`}
-    </span>
+    <div ref={ref}>
+      <span>
+        {prefix}
+        {formatted}
+        {suffix}
+      </span>
+    </div>
   );
 }

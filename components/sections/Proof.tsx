@@ -6,9 +6,23 @@ import { PROOF } from "@/lib/constants";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/animations";
 
+const COUNTERS = [
+  { target: 463949, prefix: "₹", suffix: "", indianFormat: true,  label: "Revenue Collected" },
+  { target: 256,    prefix: "",  suffix: "+", indianFormat: false, label: "Customers Acquired" },
+  { target: 0,      prefix: "",  suffix: "",  indianFormat: false, label: "Lines of Code I Wrote" },
+  { target: 5,      prefix: "",  suffix: "+", indianFormat: false, label: "Years Experience" },
+];
+
 export default function Proof() {
   return (
-    <section id="proof" className="py-20 md:py-32">
+    <motion.section
+      id="proof"
+      className="py-20 md:py-32"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="max-w-4xl mx-auto px-5 text-center">
         {/* Heading */}
         <motion.div
@@ -88,20 +102,20 @@ export default function Proof() {
           variants={staggerContainer}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-10 max-w-[700px] mx-auto"
         >
-          {PROOF.stats.map((stat, i) => (
+          {COUNTERS.map((c, i) => (
             <motion.div key={i} variants={staggerItem} className="text-center">
               <div
                 className="text-[42px] md:text-[48px] font-bold text-[#D85A30] leading-none mb-2"
                 style={{ letterSpacing: "-0.02em" }}
               >
                 <AnimatedCounter
-                  target={stat.value}
-                  prefix={stat.prefix}
-                  suffix={stat.suffix}
-                  display={stat.display}
+                  target={c.target}
+                  prefix={c.prefix}
+                  suffix={c.suffix}
+                  indianFormat={c.indianFormat}
                 />
               </div>
-              <p className="text-[14px] text-[#78716C] mt-2">{stat.label}</p>
+              <p className="text-[14px] text-[#78716C] mt-2">{c.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -121,6 +135,6 @@ export default function Proof() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
