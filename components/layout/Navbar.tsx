@@ -71,7 +71,7 @@ export default function Navbar({ minimal = false }: NavbarProps) {
                 {/* Mobile hamburger */}
                 <button
                   onClick={() => setMobileOpen(true)}
-                  className="md:hidden p-2 text-[#A8A29E] hover:text-white"
+                  className="md:hidden p-2 text-[#A8A29E] hover:text-[#FAF5F0]"
                   aria-label="Open menu"
                 >
                   <svg width="22" height="16" viewBox="0 0 22 16" fill="none">

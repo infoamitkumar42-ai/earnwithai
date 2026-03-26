@@ -30,19 +30,11 @@ export default function ToolsStrip() {
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="flex items-center justify-between"
+          className="text-center"
         >
-          <h3
-            className="text-[14px] font-medium text-[#78716C] uppercase tracking-[0.1em]"
-          >
+          <h3 className="text-[20px] text-[#A8A29E] mb-8">
             Tools I use daily
           </h3>
-          <Link
-            href="/tools"
-            className="text-[14px] text-[#D85A30] hover:text-[#F97316] transition-colors font-medium"
-          >
-            See all 12 tools →
-          </Link>
         </motion.div>
       </div>
 
@@ -56,6 +48,15 @@ export default function ToolsStrip() {
             <ToolItem key={i} tool={tool} />
           ))}
         </div>
+      </div>
+
+      <div className="text-center mt-8">
+        <Link
+          href="/tools"
+          className="text-[14px] text-[#78716C] hover:text-[#FAF5F0] transition-colors"
+        >
+          See all 12 tools →
+        </Link>
       </div>
     </section>
   );

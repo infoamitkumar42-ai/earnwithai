@@ -8,8 +8,8 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function Proof() {
   return (
-    <section id="proof" className="section-gap">
-      <div className="container-warm">
+    <section id="proof" className="py-20 md:py-32">
+      <div className="max-w-4xl mx-auto px-5 text-center">
         {/* Heading */}
         <motion.div
           initial="hidden"
@@ -18,7 +18,9 @@ export default function Proof() {
           variants={fadeUp}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">{PROOF.heading}</h2>
+          <h2 className="text-[32px] md:text-[48px] font-semibold text-[#FAF5F0] tracking-[-0.02em]">
+            {PROOF.heading}
+          </h2>
         </motion.div>
 
         {/* Main proof image — laptop frame style */}
@@ -99,28 +101,21 @@ export default function Proof() {
                   display={stat.display}
                 />
               </div>
-              <p className="text-[13px] text-[#78716C] font-medium">{stat.label}</p>
+              <p className="text-[14px] text-[#78716C] mt-2">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Proof badges */}
+        {/* Verification badges */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="flex flex-wrap justify-center gap-3"
+          className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 mt-12"
         >
           {PROOF.badges.map((badge, i) => (
-            <span
-              key={i}
-              className="px-4 py-2 rounded-full text-[13px] font-medium text-[#A8A29E]"
-              style={{
-                background: "rgba(28,25,23,0.8)",
-                border: "1px solid rgba(168,162,158,0.1)",
-              }}
-            >
+            <span key={i} className="text-[13px] text-[#78716C]">
               {badge}
             </span>
           ))}

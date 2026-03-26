@@ -26,8 +26,11 @@ export default function StickyMobileCTA() {
         borderTop: "1px solid rgba(168,162,158,0.08)",
       }}
     >
-      <Link href="/free-guide" className="btn-primary w-full justify-center text-[15px]">
-        Get Free Guide — 100% Free →
+      <Link
+        href="/free-guide"
+        className="block w-full bg-[#D85A30] text-[#FAF5F0] text-center py-4 rounded-full font-medium text-[15px] hover:bg-[#F97316] transition-colors"
+      >
+        Get Free AI Guide →
       </Link>
     </div>
   );

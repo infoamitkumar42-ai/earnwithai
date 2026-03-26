@@ -7,20 +7,19 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function Offerings() {
   return (
-    <section className="section-gap">
-      <div className="container-warm">
+    <section className="py-20 md:py-32">
+      <div className="max-w-5xl mx-auto px-5">
         {/* Heading */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <span className="text-[13px] text-[#D85A30] font-medium uppercase tracking-[0.1em] mb-3 block">
-            Products
-          </span>
-          <h2 className="section-heading">Choose your starting point</h2>
+          <h2 className="text-[32px] md:text-[48px] font-semibold text-[#FAF5F0] tracking-[-0.02em]">
+            Choose your starting point
+          </h2>
         </motion.div>
 
         <motion.div
@@ -42,8 +41,8 @@ export default function Offerings() {
                   ? "rgba(28,25,23,0.8)"
                   : "rgba(28,25,23,0.5)",
                 border: offer.highlight
-                  ? "1px solid rgba(216,90,48,0.3)"
-                  : "1px solid rgba(168,162,158,0.08)",
+                  ? "2px solid rgba(216,90,48,0.3)"
+                  : "1px solid rgba(168,162,158,0.06)",
                 boxShadow: offer.highlight
                   ? "0 0 60px rgba(216,90,48,0.06)"
                   : "none",
@@ -102,7 +101,7 @@ export default function Offerings() {
               {/* Price */}
               <div className="flex items-baseline gap-3 mb-5">
                 <span
-                  className="text-[36px] font-bold text-[#FAF5F0]"
+                  className={`text-[36px] font-bold ${offer.highlight ? "text-[#D85A30]" : "text-[#FAF5F0]"}`}
                   style={{ letterSpacing: "-0.02em" }}
                 >
                   {offer.price}

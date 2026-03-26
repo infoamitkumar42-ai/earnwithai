@@ -7,20 +7,17 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function Methods() {
   return (
-    <section className="section-gap">
-      <div className="container-warm">
+    <section className="py-20 md:py-32">
+      <div className="max-w-4xl mx-auto px-5">
         {/* Heading */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="mb-12"
+          className="text-center mb-16"
         >
-          <span className="text-[13px] text-[#D85A30] font-medium uppercase tracking-[0.1em] mb-3 block">
-            Income Methods
-          </span>
-          <h2 className="section-heading max-w-[500px]">
+          <h2 className="text-[32px] md:text-[48px] font-semibold text-[#FAF5F0] tracking-[-0.02em]">
             5 ways I'll teach you to earn
           </h2>
         </motion.div>
@@ -31,7 +28,7 @@ export default function Methods() {
           whileInView="visible"
           viewport={viewportConfig}
           variants={staggerContainer}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-5"
         >
           {METHODS.map((method, i) => (
             <motion.div
@@ -74,7 +71,7 @@ export default function Methods() {
                       {method.title}
                     </h3>
                     {method.badge && (
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#D85A30] text-white">
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#D85A30] text-[#FAF5F0]">
                         {method.badge}
                       </span>
                     )}
@@ -97,10 +94,10 @@ export default function Methods() {
 
                 {/* Method image — hidden on small mobile, visible md+ */}
                 <div
-                  className="hidden sm:block flex-shrink-0 rounded-[14px] overflow-hidden relative"
+                  className="hidden sm:block flex-shrink-0 rounded-xl overflow-hidden relative"
                   style={{
-                    width: "160px",
-                    height: "110px",
+                    width: "192px",
+                    height: "128px",
                     background: "#0C0A09",
                     border: "1px solid rgba(168,162,158,0.1)",
                   }}

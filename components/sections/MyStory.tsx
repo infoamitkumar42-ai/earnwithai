@@ -8,20 +8,19 @@ import { fadeUp, staggerContainer, staggerItem, viewportConfig } from "@/lib/ani
 
 export default function MyStory() {
   return (
-    <section className="section-gap">
-      <div className="container-warm">
+    <section className="py-20 md:py-32">
+      <div className="max-w-4xl mx-auto px-5">
         {/* Heading */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="mb-10"
+          className="text-center mb-12"
         >
-          <span className="text-[13px] text-[#D85A30] font-medium uppercase tracking-[0.1em] mb-3 block">
-            About Amit
-          </span>
-          <h2 className="section-heading">{MY_STORY.heading}</h2>
+          <h2 className="text-[32px] md:text-[48px] font-semibold text-[#FAF5F0] tracking-[-0.02em]">
+            {MY_STORY.heading}
+          </h2>
         </motion.div>
 
         {/* Image — full width, editorial */}
@@ -39,13 +38,8 @@ export default function MyStory() {
               alt="Amit Kumar — AI Income Coach"
               className="absolute inset-0 w-full h-full object-cover object-top"
             />
-            {/* Warm gradient overlay at bottom */}
-            <div
-              className="absolute bottom-0 left-0 right-0 h-32"
-              style={{
-                background: "linear-gradient(to bottom, transparent, #0C0A09)",
-              }}
-            />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0C0A09] rounded-2xl" />
           </div>
         </motion.div>
 
@@ -55,7 +49,7 @@ export default function MyStory() {
           whileInView="visible"
           viewport={viewportConfig}
           variants={staggerContainer}
-          className="max-w-[700px] mx-auto text-center"
+          className="max-w-2xl mx-auto text-center"
         >
           <div className="space-y-5 mb-10">
             {MY_STORY.paragraphs.map((para, i) => (
@@ -70,7 +64,10 @@ export default function MyStory() {
           </div>
 
           <motion.div variants={staggerItem}>
-            <Link href={MY_STORY.ctaHref} className="btn-primary">
+            <Link
+              href={MY_STORY.ctaHref}
+              className="inline-block bg-[#D85A30] text-[#FAF5F0] px-8 py-4 rounded-full font-medium text-[16px] transition-all duration-300 hover:bg-[#F97316] hover:shadow-[0_0_30px_rgba(216,90,48,0.3)] hover:-translate-y-0.5"
+            >
               {MY_STORY.cta}
             </Link>
           </motion.div>

@@ -4,7 +4,7 @@ import { SITE, FOOTER_LINKS } from "@/lib/constants";
 export default function Footer() {
   return (
     <footer className="border-t border-[rgba(168,162,158,0.08)]">
-      <div className="container-warm py-12 md:py-16">
+      <div className="max-w-5xl mx-auto px-5 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>

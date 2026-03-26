@@ -1,10 +1,9 @@
-// Fonts are loaded via CSS @import in globals.css
-// These constants provide CSS variable names for use in layout
+import { Instrument_Serif } from "next/font/google";
 
-export const fontVariables = {
-  inter: "--font-inter",
-  serif: "--font-serif",
-};
-
-// Font class strings for the body element
-export const fontBodyClass = "";
+export const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  style: "italic",
+  variable: "--font-serif-accent",
+  display: "swap",
+});

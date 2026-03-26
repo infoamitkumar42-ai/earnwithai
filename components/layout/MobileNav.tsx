@@ -31,7 +31,7 @@ export function MobileNav({ isOpen, onClose, links }: MobileNavProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-[#0C0A09]/60 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -55,7 +55,7 @@ export function MobileNav({ isOpen, onClose, links }: MobileNavProps) {
               </span>
               <button
                 onClick={onClose}
-                className="p-2 text-[#78716C] hover:text-white"
+                className="p-2 text-[#78716C] hover:text-[#FAF5F0]"
                 aria-label="Close menu"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

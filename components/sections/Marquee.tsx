@@ -1,11 +1,9 @@
 "use client";
 
-
 import { motion } from "framer-motion";
 import { MARQUEE_HASHTAGS } from "@/lib/constants";
 import { fadeUp, viewportConfig } from "@/lib/animations";
 
-// Marquee items interleaved with method images
 type MarqueeItemType =
   | { type: "text"; content: string; src?: undefined; alt?: undefined; rotate?: undefined }
   | { type: "image"; src: string; alt: string; rotate: number; content?: undefined };
@@ -26,15 +24,15 @@ const MARQUEE_ITEMS: MarqueeItemType[] = [
   { type: "text", content: "anywhere" },
 ];
 
-function MarqueeItem({ item }: { item: typeof MARQUEE_ITEMS[0] }) {
+function MarqueeItem({ item }: { item: (typeof MARQUEE_ITEMS)[0] }) {
   if (item.type === "text") {
     return (
       <span
-        className="font-bold select-none flex-shrink-0"
+        className="font-bold select-none flex-shrink-0 whitespace-nowrap"
         style={{
-          fontSize: "clamp(48px, 8vw, 80px)",
-          color: "rgba(168,162,158,0.35)",
-          letterSpacing: "-0.02em",
+          fontSize: "clamp(40px, 7vw, 64px)",
+          color: "rgba(250,245,240,0.18)",
+          letterSpacing: "-0.03em",
           lineHeight: 1,
         }}
       >
@@ -45,11 +43,10 @@ function MarqueeItem({ item }: { item: typeof MARQUEE_ITEMS[0] }) {
 
   return (
     <div
-      className="flex-shrink-0 relative overflow-hidden"
+      className="flex-shrink-0 relative overflow-hidden rounded-2xl"
       style={{
-        width: "clamp(120px, 16vw, 200px)",
-        height: "clamp(60px, 8vw, 100px)",
-        borderRadius: "12px",
+        width: "clamp(160px, 16vw, 240px)",
+        height: "clamp(80px, 8vw, 120px)",
         transform: `rotate(${item.rotate}deg)`,
         border: "1px solid rgba(168,162,158,0.1)",
         background: "#1C1917",
@@ -57,28 +54,37 @@ function MarqueeItem({ item }: { item: typeof MARQUEE_ITEMS[0] }) {
     >
       <img
         src={item.src}
-        alt={item.alt || ""}
+        alt={item.alt ?? ""}
         className="absolute inset-0 w-full h-full object-cover"
+        draggable={false}
       />
     </div>
   );
 }
 
-export default function Marquee() {
+export default function MarqueeSection() {
   const doubled = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden">
-      {/* Scrolling marquee row */}
-      <div className="marquee-wrapper mb-10">
-        <div className="marquee-track gap-8 px-8" style={{ alignItems: "center" }}>
+    <section className="py-16 md:py-24 overflow-hidden">
+      {/* Scrolling row */}
+      <div className="marquee-wrapper mb-12">
+        <div
+          className="marquee-track"
+          style={{
+            alignItems: "center",
+            gap: "24px",
+            paddingLeft: "24px",
+            animationDuration: "50s",
+          }}
+        >
           {doubled.map((item, i) => (
             <MarqueeItem key={i} item={item} />
           ))}
         </div>
       </div>
 
-      {/* Caption below */}
+      {/* Caption + hashtags */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -86,26 +92,37 @@ export default function Marquee() {
         variants={fadeUp}
         className="container-warm text-center"
       >
-        <p className="text-[18px] text-[#78716C] mb-8">
+        <p className="text-[17px] text-[#A8A29E] mb-6">
           Built for people who want real income from AI.
         </p>
 
-        {/* Hashtag badges */}
-        <div className="flex flex-wrap justify-center gap-2.5 overflow-x-auto pb-2">
+        {/* Hashtag pills — desktop: wrap, mobile: horizontal scroll */}
+        <div className="hidden sm:flex flex-wrap justify-center gap-3">
           {MARQUEE_HASHTAGS.map((tag) => (
-            <span
-              key={tag}
-              className="flex-shrink-0 px-4 py-2 rounded-full text-[13px] font-medium text-[#A8A29E]"
-              style={{
-                background: "rgba(28,25,23,0.8)",
-                border: "1px solid rgba(168,162,158,0.1)",
-              }}
-            >
-              {tag}
-            </span>
+            <HashtagPill key={tag} tag={tag} />
+          ))}
+        </div>
+        <div className="flex sm:hidden overflow-x-auto gap-2.5 pb-2 scrollbar-hide">
+          {MARQUEE_HASHTAGS.map((tag) => (
+            <HashtagPill key={tag} tag={tag} />
           ))}
         </div>
       </motion.div>
     </section>
+  );
+}
+
+function HashtagPill({ tag }: { tag: string }) {
+  return (
+    <span
+      className="
+        flex-shrink-0 px-4 py-2 rounded-full text-[13px] text-[#A8A29E]
+        border border-[rgba(168,162,158,0.08)] bg-[#1C1917]/60
+        cursor-default transition-all duration-200
+        hover:border-[rgba(216,90,48,0.2)] hover:text-[#FAF5F0]
+      "
+    >
+      {tag}
+    </span>
   );
 }

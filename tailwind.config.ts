@@ -18,6 +18,7 @@ const config: Config = {
         accent: {
           DEFAULT: "#D85A30",
           light: "#F97316",
+          hover: "#F97316",
           glow: "rgba(216,90,48,0.15)",
           subtle: "rgba(216,90,48,0.06)",
         },
@@ -25,6 +26,20 @@ const config: Config = {
           DEFAULT: "#FAF5F0",
           muted: "#A8A29E",
           dim: "#78716C",
+        },
+        bg: {
+          primary: "#0C0A09",
+          card: "#1C1917",
+          elevated: "#292524",
+        },
+        text: {
+          primary: "#FAF5F0",
+          secondary: "#A8A29E",
+          muted: "#78716C",
+        },
+        border: {
+          DEFAULT: "rgba(168,162,158,0.08)",
+          hover: "rgba(168,162,158,0.15)",
         },
       },
       fontFamily: {

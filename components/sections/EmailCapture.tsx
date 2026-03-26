@@ -30,7 +30,7 @@ export default function EmailCapture({ redirectTo = "/thank-you" }: EmailCapture
 
   return (
     <section
-      className="section-gap relative overflow-hidden"
+      className="py-32 relative overflow-hidden"
       style={{
         background:
           "radial-gradient(ellipse at 50% 50%, rgba(216,90,48,0.05) 0%, transparent 70%)",
@@ -44,7 +44,9 @@ export default function EmailCapture({ redirectTo = "/thank-you" }: EmailCapture
           variants={fadeUp}
           className="max-w-[600px] mx-auto text-center"
         >
-          <h2 className="section-heading mb-4">{EMAIL_CAPTURE.heading}</h2>
+          <h2 className="text-[28px] md:text-[40px] font-semibold text-[#FAF5F0] tracking-[-0.02em] mb-4">
+            {EMAIL_CAPTURE.heading}
+          </h2>
           <p className="text-[17px] text-[#A8A29E] mb-10 leading-[1.7]">
             {EMAIL_CAPTURE.subheading}
           </p>
