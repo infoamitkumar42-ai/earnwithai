@@ -55,17 +55,17 @@ export default function Hero() {
         {/* 4. Buttons */}
         <motion.div
           {...fadeUp(0.45)}
-          className="flex flex-col sm:flex-row gap-4 items-center mb-12"
+          className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-center mb-12"
         >
           <Link
             href="/free-guide"
-            className="px-8 py-4 rounded-full font-medium text-[16px] text-[#FAF5F0] bg-[#D85A30] transition-all duration-300 hover:bg-[#F97316] hover:shadow-[0_0_30px_rgba(216,90,48,0.3)] hover:-translate-y-0.5 whitespace-nowrap"
+            className="w-full sm:w-auto text-center px-8 py-4 rounded-full font-medium text-[16px] text-[#FAF5F0] bg-[#D85A30] transition-all duration-300 hover:bg-[#F97316] hover:shadow-[0_0_30px_rgba(216,90,48,0.3)] hover:-translate-y-0.5"
           >
             {HERO.ctaPrimary}
           </Link>
           <a
             href="#proof"
-            className="px-8 py-4 rounded-full font-medium text-[16px] text-[#FAF5F0] bg-transparent border border-[rgba(168,162,158,0.2)] transition-all duration-300 hover:border-[rgba(168,162,158,0.4)] hover:bg-white/[0.03] whitespace-nowrap"
+            className="w-full sm:w-auto text-center px-8 py-4 rounded-full font-medium text-[16px] text-[#FAF5F0] bg-transparent border border-[rgba(168,162,158,0.2)] transition-all duration-300 hover:border-[rgba(168,162,158,0.4)] hover:bg-white/[0.03]"
           >
             {HERO.ctaSecondary}
           </a>
@@ -74,9 +74,9 @@ export default function Hero() {
         {/* 5. Social proof */}
         <motion.div
           {...fadeUp(0.6)}
-          className="flex items-center justify-center gap-3"
+          className="flex flex-col items-center gap-2"
         >
-          <div className="flex">
+          <div className="flex items-center justify-center">
             {AVATAR_COLORS.map((color, i) => (
               <div
                 key={i}
@@ -90,8 +90,10 @@ export default function Hero() {
               />
             ))}
           </div>
-          <span className="text-[14px] text-[#78716C]">{HERO.socialProof}</span>
-          <span className="text-[14px] font-semibold text-[#D85A30]">{HERO.rating}</span>
+          <div className="flex items-center gap-2 text-center">
+            <span className="text-[13px] text-[#78716C]">{HERO.socialProof}</span>
+            <span className="text-[13px] font-semibold text-[#D85A30]">{HERO.rating}</span>
+          </div>
         </motion.div>
       </div>
 

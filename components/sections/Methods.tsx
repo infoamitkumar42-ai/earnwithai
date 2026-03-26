@@ -50,7 +50,20 @@ export default function Methods() {
                   : "1px solid rgba(168,162,158,0.08)",
               }}
             >
-              <div className="p-6 md:p-8 flex items-center gap-6 md:gap-8">
+              <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                {/* Mobile image — full width above text */}
+                <div className="block md:hidden w-full h-40 rounded-xl overflow-hidden relative"
+                  style={{ background: "#0C0A09", border: "1px solid rgba(168,162,158,0.1)" }}
+                >
+                  <img
+                    src={`/images/${method.image}`}
+                    alt={method.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Row content: number + text + desktop image */}
+                <div className="flex items-center gap-6 md:gap-8 flex-1">
                 {/* Number + icon */}
                 <div className="flex-shrink-0 flex flex-col items-center gap-2">
                   <div
@@ -98,9 +111,9 @@ export default function Methods() {
                   </span>
                 </div>
 
-                {/* Method image — hidden on small mobile, visible md+ */}
+                {/* Desktop image — side */}
                 <div
-                  className="hidden sm:block flex-shrink-0 rounded-xl overflow-hidden relative"
+                  className="hidden md:block flex-shrink-0 rounded-xl overflow-hidden relative"
                   style={{
                     width: "192px",
                     height: "128px",
@@ -108,13 +121,13 @@ export default function Methods() {
                     border: "1px solid rgba(168,162,158,0.1)",
                   }}
                 >
-                  {/* REPLACE: method images */}
                   <img
                     src={`/images/${method.image}`}
                     alt={method.title}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
+                </div>{/* end row content */}
               </div>
             </motion.div>
           ))}

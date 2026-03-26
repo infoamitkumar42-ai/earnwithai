@@ -35,17 +35,16 @@ export default function MyStory() {
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeUp}
-          className="relative w-full max-h-[500px] overflow-hidden rounded-[20px] mb-12"
+          className="relative w-full rounded-[20px] mb-12"
         >
-          {/* REPLACE: about-amit.png — arms crossed, dashboard behind */}
-          <div className="relative w-full" style={{ aspectRatio: "16/7" }}>
+          <div className="relative w-full">
             <img
               src="/images/hero-amit.png"
               alt="Amit Kumar — AI Income Coach"
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="w-full h-auto max-h-[500px] object-contain rounded-2xl"
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0C0A09] rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent/0 to-[#0C0A09] rounded-2xl" />
           </div>
         </motion.div>
 
